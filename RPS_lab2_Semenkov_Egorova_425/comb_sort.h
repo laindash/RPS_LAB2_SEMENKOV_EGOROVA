@@ -9,6 +9,10 @@
 /// </summary>
 class CombSort {
 public:
+    /// <summary>
+    /// —ортирует вектор с использованием сортировки расческой.
+    /// </summary>
+    /// <param name="array">¬ектор, который нужно отсортировать.</param>
     void sort(std::vector<int> &array);
 };
 

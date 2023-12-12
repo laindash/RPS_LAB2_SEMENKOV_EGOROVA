@@ -2,12 +2,6 @@
 #include "comb_sort.h"
 
 
-/// <summary>
-///    ¬ыводит изначальные и отсортированные массивы.
-/// </summary>
-/// <param name="arrays">
-///    ¬ектор векторов, в котором хран€тс€ массивы.
-/// </param>
 void showArrays(const std::vector<std::vector<int>> &arrays) {
     // ¬ычисл€ем количество массивов, инициализируем переменную хран€щую количество элементов
     size_t number_of_arrays = arrays.size(), amount_of_elements{};
@@ -33,15 +27,6 @@ void showArrays(const std::vector<std::vector<int>> &arrays) {
 }
 
 
-/// <summary>
-///    √енерирует случайные массивы дл€ дальнейшей сортировки.
-/// </summary>
-/// <param name="arrays">
-///    ¬ектор векторов, в который будут помещены сгенерированные массивы.
-/// </param>
-/// <param name="number_of_arrays">
-///     оличество массивов дл€ генерации.
-/// </param>
 void generateRandomArrays(std::vector<std::vector<int>> &arrays, const size_t &number_of_arrays) {
     size_t amount_of_elements{};
 
@@ -63,12 +48,6 @@ void generateRandomArrays(std::vector<std::vector<int>> &arrays, const size_t &n
 }
 
 
-/// <summary>
-///    —ортирует массивы, хран€щиес€ в векторе.
-/// </summary>
-/// <param name="arrays">
-///    ¬ектор векторов, в котором сортируютс€ массивы.
-/// </param>
 void startSorting(std::vector<std::vector<int>> &arrays) {
     // ¬ычисл€ем количество массивов
     size_t number_of_arrays = arrays.size();

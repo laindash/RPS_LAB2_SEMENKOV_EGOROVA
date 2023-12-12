@@ -2,9 +2,6 @@
 #include "wchar.h"
 
 
-/// <summary>
-/// Функция для получения целочисленного ввода от пользователя.
-/// </summary>
 int getInt() {
     int input{};
 
@@ -39,9 +36,6 @@ int getInt() {
 }
 
 
-/// <summary>
-/// Функция для получения положительного целочисленного ввода от пользователя.
-/// </summary>
 int getPosInt() {
     int num = 0;
 
@@ -73,9 +67,6 @@ int getPosInt() {
 }
 
 
-/// <summary>
-/// Функция для получения клавишного ввода в заданном диапазоне.
-/// </summary>
 int getKey(int key_min, int key_max) {
     int key = 0;
 
@@ -95,18 +86,12 @@ int getKey(int key_min, int key_max) {
 }
 
 
-/// <summary>
-/// Функция для получения случайного целого числа в заданном диапазоне.
-/// </summary>
 int getRandInt(int low_bound, int up_bound) {
     // Генерация случайного числа в заданном диапазоне
     return (rand() % (up_bound - low_bound) + low_bound);
 }
 
 
-/// <summary>
-/// Функция для корректного ввода строк.
-/// </summary>
 std::string getLine(std::istream &input, std::string &line, int input_type) {
     bool valid_input = true;
 

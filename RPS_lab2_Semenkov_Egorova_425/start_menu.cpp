@@ -10,7 +10,6 @@ void startProgram(void) {
 
     // Бесконечный цикл работы программы
     for (;;) {
-        CombSort combSort{}; // Создание объекта для сортировки расческой
         std::vector<std::vector<int>> arrays{};  // Вектор векторов для хранения массивов
         std::string file_path{}; // Строка для хранения пути к файлу
         size_t number_of_arrays{}; // Количество массивов, вводимое пользователем
