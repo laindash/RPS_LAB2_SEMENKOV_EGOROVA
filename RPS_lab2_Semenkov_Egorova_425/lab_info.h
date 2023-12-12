@@ -1,4 +1,4 @@
-#ifndef LAB_INFO_H
+﻿#ifndef LAB_INFO_H
 #define LAB_INFO_H
 
 
