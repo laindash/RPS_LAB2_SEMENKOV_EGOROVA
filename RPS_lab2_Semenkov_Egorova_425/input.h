@@ -11,17 +11,17 @@ constexpr auto KEY_1 = 0x31; // Вычисляемый на этапе комп�
 constexpr auto KEY_2 = 0x32; // Вычисляемый на этапе компиляции тип данных, являющийся константой, для клавиши 2
 
 enum InputMenu {
-    FILE_INPUT = KEY_1,
-    RANDOM_INPUT = KEY_2,
-    MANUAL_INPUT
+    File_Input = KEY_1,
+    Random_Input = KEY_2,
+    Manual_Input
 };
 
 enum OutputMenu {
-    SHOW = KEY_1,
-    SAVE = KEY_2
+    Show = KEY_1,
+    Save = KEY_2
 };
 
-enum ConstValues {
+enum ConstValuesForRandomInput {
     LOW_BOUND_FOR_RANDOM = -1000,
     UP_BOUND_FOR_RANDOM = 1000,
     LOW_BOUND_FOR_QUANTITY = 3,
@@ -29,14 +29,14 @@ enum ConstValues {
 };
 
 enum BoolMenu {
-    RESET = KEY_1,
-    ANOTHER = KEY_2,
-    QUIT = KEY_ESC
+    Reset = KEY_1,
+    Another = KEY_2,
+    Quit = KEY_ESC
 };
 
 enum BoolInput {
-    ALL_TYPES,
-    ONLY_DIGITS,
+    All_Types,
+    Only_Digits,
 };
 
 /// <summary>

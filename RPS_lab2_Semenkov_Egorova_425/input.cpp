@@ -55,9 +55,7 @@ int getPosInt() {
             std::cout << "Вводимое значение должно быть не больше чем " << std::fixed << INT_MAX << std::endl;
             continue; // Продолжить цикл, чтобы пользователь ввел корректное значение
         }
-
-        // Если введено значение равное 0, вывести сообщение об ошибке
-        else if (num == 0) {
+        else if (num == 0) { // Если введено значение равное 0, вывести сообщение об ошибке
             std::cout << "Вводимое значение не должно быть равно 0. Повторите попытку!" << std::endl;
         }
     } 
@@ -113,19 +111,19 @@ std::string getLine(std::istream &input, std::string &line, int input_type) {
                 std::getline(input, line);
 
                 // Повторный ввод значения
-                if (input_type == FILE_INPUT) {
+                if (input_type == File_Input) {
                     valid_input = false;
                 }
             }
         } 
-        while (std::cin.fail() && input_type != FILE_INPUT); // Повторять, пока ввод содержит ошибку
+        while (std::cin.fail() && input_type != File_Input); // Повторять, пока ввод содержит ошибку
        
         // Если ввод происходит из файла и была ошибка, помечаем, что ввод некорректен
-        if (input_type == FILE_INPUT && !valid_input) {
+        if (input_type == File_Input && !valid_input) {
             break;
         }
    
-        if (line.empty() && input_type != FILE_INPUT) {
+        if (line.empty() && input_type != File_Input) {
             std::cout << "Вводимое значение не должно быть пустым!" << std::endl;
             valid_input = false;
             continue;
@@ -156,16 +154,15 @@ std::string getLine(std::istream &input, std::string &line, int input_type) {
                 std::cout << "Вводимое значение не должно начинаться с пробела!" << std::endl;
                 break;
             }
-
             else {
                 valid_input = true;
             }
         }
     } 
-    while (!valid_input && input_type == MANUAL_INPUT);
+    while (!valid_input && input_type == Manual_Input);
 
     // Если ввод из файла и была ошибка, возвращаем пустую строку
-    if (!valid_input && input_type == FILE_INPUT) {
+    if (!valid_input && input_type == File_Input) {
         line = "";
     }
 

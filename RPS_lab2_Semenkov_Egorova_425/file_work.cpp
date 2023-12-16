@@ -52,7 +52,7 @@ std::string checkFile() {
     do {
         // Запрос пути к файлу от пользователя
         std::cout << "Введите путь к файлу: ";
-        getLine(std::cin, path, MANUAL_INPUT);
+        getLine(std::cin, path, Manual_Input);
 
         // Проверка наличия файла по указанному пути
         if (!std::ifstream(path)) {
@@ -74,16 +74,13 @@ std::string checkFile() {
             std::cout << "Ошибка открытия файла!" << std::endl;
             file.close();
         }
-
-        // Проверка корректности данных в файле
-        else if (!isDataCorrect(file)) {
+        else if (!isDataCorrect(file)) { // Проверка корректности данных в файле
             std::cout << "Данные некорректны!" << std::endl;
             file.close();
-        }
-
-        // Если файл успешно открыт с корректными данными, завершаем цикл
-        else
+        }      
+        else { // Если файл успешно открыт с корректными данными, завершаем цикл
             is_loaded = true;
+        }
     } 
     while (!is_loaded);
 
@@ -168,7 +165,7 @@ void saveToFile(std::vector<std::vector<int>> &arrays) {
         std::cout
             << "Введите путь к файлу для сохранения. "
             << "Если указать только имя и расширение файла, стандартным путём будет являться путь к исходному коду программы." << std::endl;
-        getLine(std::cin, path, MANUAL_INPUT);
+        getLine(std::cin, path, Manual_Input);
 
         // Проверка существования файла
         if (std::ifstream(path)) {
@@ -185,7 +182,7 @@ void saveToFile(std::vector<std::vector<int>> &arrays) {
                 << "2 - Выбрать другой." << std::endl;
 
             // Пользовательский ввод для выбора действия
-            if (getKey(RESET, ANOTHER) == ANOTHER) {
+            if (getKey(Reset, Another) == Another) {
                 continue;
             }
         }

@@ -21,6 +21,7 @@ void showArrays(const std::vector<std::vector<int>> &arrays) {
         for (size_t j = 0; j < amount_of_elements; j++) {
             std::cout << arrays[i][j] << ' ';
         }
+
         std::cout << std::endl
             << "***********************************************************************" << std::endl;
     }
