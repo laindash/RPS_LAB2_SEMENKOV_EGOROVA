@@ -1,4 +1,4 @@
-#include "CppUnitTest.h"
+п»ї#include "CppUnitTest.h"
 #include "..\Rps_lab3_Semenkov_Egorova\main_algorithms.h"
 #include "..\Rps_lab3_Semenkov_Egorova\database.h"
 
@@ -7,7 +7,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace DBTests {
 	TEST_CLASS(DBTests) {
 	public:
-		// Тестирование добавления 100 случайных массивов в базу данных
+		// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РґРѕР±Р°РІР»РµРЅРёСЏ 100 СЃР»СѓС‡Р°Р№РЅС‹С… РјР°СЃСЃРёРІРѕРІ РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С…
 		TEST_METHOD(t1_addArrays100) {
 			std::vector<std::vector<int>> arrays{};
 			int number_of_arrays(100);
@@ -18,7 +18,7 @@ namespace DBTests {
 			Assert::AreEqual(number_of_arrays, array_loading_counter);
 		}
 
-		// Тестирование добавления 1000 случайных массивов в базу данных
+		// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РґРѕР±Р°РІР»РµРЅРёСЏ 1000 СЃР»СѓС‡Р°Р№РЅС‹С… РјР°СЃСЃРёРІРѕРІ РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С…
 		TEST_METHOD(t4_addArrays1000) {
 			std::vector<std::vector<int>> arrays{};
 			int number_of_arrays(1000);
@@ -30,7 +30,7 @@ namespace DBTests {
 			Assert::AreEqual(number_of_arrays, array_loading_counter);
 		}
 
-		// Тестирование добавления 10000 случайных массивов в базу данных
+		// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РґРѕР±Р°РІР»РµРЅРёСЏ 10000 СЃР»СѓС‡Р°Р№РЅС‹С… РјР°СЃСЃРёРІРѕРІ РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С…
 		TEST_METHOD(t7_addArrays10000) {
 			std::vector<std::vector<int>> arrays{};
 			int number_of_arrays(10000);
@@ -42,7 +42,7 @@ namespace DBTests {
 			Assert::AreEqual(number_of_arrays, array_loading_counter);
 		}
 
-		// Тестирование загрузки 100 массивов из базы данных и их сортировки
+		// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ Р·Р°РіСЂСѓР·РєРё 100 РјР°СЃСЃРёРІРѕРІ РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С… Рё РёС… СЃРѕСЂС‚РёСЂРѕРІРєРё
 		TEST_METHOD(t2_uploadArrays100) {
 			std::vector<std::vector<int>> arrays{};
 			std::vector<std::string> change_dates{};
@@ -56,7 +56,7 @@ namespace DBTests {
 			Assert::AreEqual(number_of_arrays, array_loading_counter);
 		}
 
-		// Тестирование загрузки 1000 массивов из базы данных и их сортировки
+		// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ Р·Р°РіСЂСѓР·РєРё 1000 РјР°СЃСЃРёРІРѕРІ РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С… Рё РёС… СЃРѕСЂС‚РёСЂРѕРІРєРё
 		TEST_METHOD(t5_uploadArrays1000) {
 			std::vector<std::vector<int>> arrays{};
 			std::vector<std::string> change_dates{};
@@ -70,7 +70,7 @@ namespace DBTests {
 			Assert::AreEqual(number_of_arrays, array_loading_counter);
 		}
 
-		// Тестирование загрузки 10000 массивов из базы данных и их сортировки
+		// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ Р·Р°РіСЂСѓР·РєРё 10000 РјР°СЃСЃРёРІРѕРІ РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С… Рё РёС… СЃРѕСЂС‚РёСЂРѕРІРєРё
 		TEST_METHOD(t8_uploadArrays10000) {
 			std::vector<std::vector<int>> arrays{};
 			std::vector<std::string> change_dates{};
@@ -84,21 +84,21 @@ namespace DBTests {
 			Assert::AreEqual(number_of_arrays, array_loading_counter);
 		}
 
-		// Тестирование очистки базы данных после добавления 100 массивов
+		// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РѕС‡РёСЃС‚РєРё Р±Р°Р·С‹ РґР°РЅРЅС‹С… РїРѕСЃР»Рµ РґРѕР±Р°РІР»РµРЅРёСЏ 100 РјР°СЃСЃРёРІРѕРІ
 		TEST_METHOD(t3_databaseCleaning100) {
 			bool success = clearTable();
 
 			Assert::IsTrue(success, L"test failed or the database has already been cleared");
 		}
 
-		// Тестирование очистки базы данных после добавления 1000 массивов
+		// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РѕС‡РёСЃС‚РєРё Р±Р°Р·С‹ РґР°РЅРЅС‹С… РїРѕСЃР»Рµ РґРѕР±Р°РІР»РµРЅРёСЏ 1000 РјР°СЃСЃРёРІРѕРІ
 		TEST_METHOD(t6_databaseCleaning1000) {
 			bool success = clearTable();
 
 			Assert::IsTrue(success, L"test failed or the database has already been cleared");
 		}
 
-		// Тестирование очистки базы данных после добавления 10000 массивов
+		// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РѕС‡РёСЃС‚РєРё Р±Р°Р·С‹ РґР°РЅРЅС‹С… РїРѕСЃР»Рµ РґРѕР±Р°РІР»РµРЅРёСЏ 10000 РјР°СЃСЃРёРІРѕРІ
 		TEST_METHOD(t9_databaseCleaning10000) {
 			bool success = clearTable();
 
