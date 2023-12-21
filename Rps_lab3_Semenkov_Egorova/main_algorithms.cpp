@@ -2,32 +2,6 @@
 #include "comb_sort.h"
 
 
-void showArrays(const std::vector<std::vector<int>> &arrays) {
-    // Вычисляем количество массивов, инициализируем переменную хранящую количество элементов
-    size_t number_of_arrays = arrays.size(), amount_of_elements{};
-
-    // Внешний цикл, отвечающий за количество массивов
-    for (size_t i = 0; i < number_of_arrays; i++) {
-        // Вычисляем количество элементов в массиве
-        amount_of_elements = arrays[i].size();
-
-        std::cout
-            << std::endl
-            << "Массив # " << i + 1 << std::endl
-            << "Количество элементов: " << amount_of_elements << std::endl
-            << "***********************************************************************" << std::endl;
-
-        // Внутренний цикл, отвечающий за количество элементов
-        for (size_t j = 0; j < amount_of_elements; j++) {
-            std::cout << arrays[i][j] << ' ';
-        }
-
-        std::cout << std::endl
-            << "***********************************************************************" << std::endl;
-    }
-}
-
-
 void generateRandomArrays(std::vector<std::vector<int>> &arrays, const size_t &number_of_arrays) {
     size_t amount_of_elements{};
 

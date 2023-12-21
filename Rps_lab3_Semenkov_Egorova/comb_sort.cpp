@@ -1,5 +1,4 @@
 ﻿#include "comb_sort.h"
-#include "input.h"
 
 
 void CombSort::sort(std::vector<int> &array) {

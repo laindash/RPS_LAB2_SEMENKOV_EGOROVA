@@ -1,4 +1,6 @@
-﻿<RCC>
-    <qresource prefix="/new/prefix1">
+<RCC>
+    <qresource prefix="/Rps_lab3_Semenkov_Egorova">
+        <file>img/load.png</file>
+        <file>img/save.png</file>
     </qresource>
 </RCC>

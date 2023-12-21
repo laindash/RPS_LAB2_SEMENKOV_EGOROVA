@@ -4,12 +4,6 @@
 #include <vector>
 
 /// <summary>
-/// Выводит изначальные и отсортированные массивы.
-/// </summary>
-/// <param name="arrays"> Вектор векторов, в котором хранятся массивы. </param>
-void showArrays(const std::vector<std::vector<int>> &arrays);
-
-/// <summary>
 /// Генерирует случайные массивы для дальнейшей сортировки.
 /// </summary>
 /// <param name="arrays"> Вектор векторов, в который будут помещены сгенерированные массивы. </param>
