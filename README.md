@@ -1,3 +1,3 @@
-# RPS_LAB2_SEMENKOV_EGOROVA
- Educational laboratory work performed by Semenkov Daniil and Egorova Ksenia
+# RPS_Labs_Semenkov_Egorova
+ Educational laboratory works performed by Semenkov Daniil and Egorova Ksenia
  425 group, 2023
