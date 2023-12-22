@@ -36,9 +36,6 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="main_algorithms.h" />
   </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="resource.qrc" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1EE186D3-D7ED-4451-B29D-90127124679B}</ProjectGuid>
     <Keyword>QtVS_v304</Keyword>
@@ -128,7 +125,7 @@
       <Optimization>MaxSpeed</Optimization>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>

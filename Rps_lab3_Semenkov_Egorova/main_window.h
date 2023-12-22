@@ -42,6 +42,16 @@ private slots:
 	/// </summary>
 	void sort_btn_clicked();
 
+	/// <summary>
+	/// Слот-функция, реагирующая на нажатие кнопки очистки базы. Очищает базу данных.
+	/// </summary>
+	void clear_database_btn_clicked();
+
+	/// <summary>
+	/// Слот-функция, реагирующая на нажатие кнопки очистки таблицы. Очищает таблицу массивов.
+	/// </summary>
+	void clear_table_btn_clicked();
+
 private:
 	Ui::MainWindowClass *_ui;
 	std::vector<std::vector<int>> _arrays{}; // хранит массивы

@@ -4,21 +4,24 @@
 
 void generateRandomArrays(std::vector<std::vector<int>> &arrays, const size_t &number_of_arrays) {
     size_t amount_of_elements{};
+    std::vector<std::vector<int>> new_arrays{};
 
     // Изменяем размер вектора для массивов согласно указанному количеству
-    arrays.resize(number_of_arrays);
+    new_arrays.resize(number_of_arrays);
 
     for (int i = 0; i < number_of_arrays; i++) {
         // Генерируем случайное количество элементов для текущего массива
         amount_of_elements = getRandInt(LOW_BOUND_FOR_QUANTITY, UP_BOUND_FOR_QUANTITY);
 
         // Изменяем размер текущего массива согласно сгенерированному количеству элементов
-        arrays[i].resize(amount_of_elements);
+        new_arrays[i].resize(amount_of_elements);
 
         for (int j = 0; j < amount_of_elements; j++) {
             // Заполняем массив случайными значениями в указанных пределах
-            arrays[i][j] = getRandInt(LOW_BOUND_FOR_RANDOM, UP_BOUND_FOR_RANDOM);
+            new_arrays[i][j] = getRandInt(LOW_BOUND_FOR_RANDOM, UP_BOUND_FOR_RANDOM);
         }
+        // Добавляем новый массив к старым
+        arrays.push_back(new_arrays[i]);
     }
 }
 

@@ -14,7 +14,6 @@ enum ConstValuesForRandomInput {
 
 // Заголовки таблицы в графическом интерфейсе
 enum TableHeaders {
-    Id,
     Array_data,
     Change_date,
     Type

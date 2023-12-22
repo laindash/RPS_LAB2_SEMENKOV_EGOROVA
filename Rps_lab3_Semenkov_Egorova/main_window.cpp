@@ -20,26 +20,17 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), _ui(new Ui::MainW
 	connect(_ui->load_btn, &QPushButton::clicked, this, &MainWindow::load_btn_clicked);
 	connect(_ui->random_btn, &QPushButton::clicked, this, &MainWindow::random_btn_clicked);
 	connect(_ui->sort_btn, &QPushButton::clicked, this, &MainWindow::sort_btn_clicked);
-
-	// Установка иконок для кнопок
-	QPixmap pixSave(":/Rps_lab3_Semenkov_Egorova/img/save.png");
-	_ui->save_btn->setIcon(pixSave);
-	_ui->save_btn->setIconSize(_ui->save_btn->size());
-
-	QPixmap pixLoad(":/Rps_lab3_Semenkov_Egorova/img/load.png");
-	_ui->load_btn->setIcon(pixLoad);
-	_ui->load_btn->setIconSize(_ui->load_btn->size());
+	connect(_ui->clear_database_btn, &QPushButton::clicked, this, &MainWindow::clear_database_btn_clicked);
+	connect(_ui->clear_table_btn, &QPushButton::clicked, this, &MainWindow::clear_table_btn_clicked);
 
 	// Установка ширины столбцов в QTableWidget
-	_ui->output_table->setColumnWidth(Id, 50);
-	_ui->output_table->setColumnWidth(Array_data, 650);
+	_ui->output_table->setColumnWidth(Array_data, 700);
 	_ui->output_table->setColumnWidth(Change_date, 130);
 	_ui->output_table->setColumnWidth(Type, 80);
 
 	// Установка режима изменения размеров секций горизонтального и вертикального заголовка
 	_ui->output_table->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 	_ui->output_table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-	_ui->output_table->verticalHeader()->setVisible(false);
 
 	// Создание валидатора для QLineEdit
 	QIntValidator* validator = new QIntValidator(_ui->number_of_arrays);
@@ -69,6 +60,7 @@ void MainWindow::load_btn_clicked() {
 		_arrays.clear(); // Очистка массива, т.к. новые данные добавляются через push_back
 	}
 
+	clearTableWidget();
 	// Загрузка данных из базы
 	loadDataFromDB(_arrays, _change_dates);
 
@@ -87,7 +79,6 @@ void MainWindow::load_btn_clicked() {
 		_ui->output_table->insertRow(row); // вставка новой строки
 
 		// Заполнение ячеек таблицы данными
-		_ui->output_table->setItem(row, Id, new QTableWidgetItem(QString::number(row + 1)));
 		_ui->output_table->setItem(row, Array_data, new QTableWidgetItem(array));
 		_ui->output_table->setItem(row, Change_date, new QTableWidgetItem(QString::fromStdString(_change_dates[i])));
 		_ui->output_table->setItem(row, Type, new QTableWidgetItem(QString::fromStdString(getArrayType(_arrays[i]))));
@@ -100,6 +91,12 @@ void MainWindow::random_btn_clicked() {
 	// Получение значения количества массивов из строки ввода
 	QString number_of_arrays = _ui->number_of_arrays->text();
 
+	if (!_ui->save_in_table->isChecked()) {
+		clearTableWidget(); // Очистка данных в таблице перед новой загрузкой данных
+		_arrays.clear(); // Очистка массива, т.к. новые данные добавляются через push_back
+	}
+
+	clearTableWidget();
 	// Проверка, введено ли количество массивов для генерации
 	if (number_of_arrays.isEmpty()) {
 		all_good = false;
@@ -107,8 +104,6 @@ void MainWindow::random_btn_clicked() {
 	}
 
 	if (all_good) {
-		clearTableWidget();
-		_arrays.clear();
 		generateRandomArrays(_arrays, number_of_arrays.toInt());
 
 		int row{};
@@ -126,7 +121,6 @@ void MainWindow::random_btn_clicked() {
 			_ui->output_table->insertRow(row); // вставка новой строки
 
 			// Заполнение ячеек таблицы данными
-			_ui->output_table->setItem(row, Id, new QTableWidgetItem(QString::number(row + 1)));
 			_ui->output_table->setItem(row, Array_data, new QTableWidgetItem(array));
 			_ui->output_table->setItem(row, Change_date, new QTableWidgetItem(QString::fromStdString(getCurrentDateAndTime())));
 			_ui->output_table->setItem(row, Type, new QTableWidgetItem(QString::fromStdString(getArrayType(_arrays[i]))));
@@ -139,7 +133,7 @@ void MainWindow::random_btn_clicked() {
 void MainWindow::sort_btn_clicked() {
 	// Вызов функции для сортировки массивов
 	startSorting(_arrays);
-
+	clearTableWidget();
 	int row{};
 	// Перебор отсортированных массивов и их добавление в таблицу
 	for (size_t i = 0; i < _arrays.size(); ++i) {
@@ -155,7 +149,6 @@ void MainWindow::sort_btn_clicked() {
 		_ui->output_table->insertRow(row); // вставка новой строки
 
 		// Заполнение ячеек таблицы данными
-		_ui->output_table->setItem(row, Id, new QTableWidgetItem(QString::number(row + 1)));
 		_ui->output_table->setItem(row, Array_data, new QTableWidgetItem(array));
 		_ui->output_table->setItem(row, Change_date, new QTableWidgetItem(QString::fromStdString(getCurrentDateAndTime())));
 		_ui->output_table->setItem(row, Type, new QTableWidgetItem(QString::fromStdString(getArrayType(_arrays[i]))));
@@ -164,6 +157,14 @@ void MainWindow::sort_btn_clicked() {
 	}
 }
 
+void MainWindow::clear_database_btn_clicked() {
+	clearTable();
+}
+
+void MainWindow::clear_table_btn_clicked() {
+	clearTableWidget();
+	_arrays.clear();
+}
 
 void MainWindow::clearTableWidget() {
 	// Очистка содержимого ячеек таблицы
