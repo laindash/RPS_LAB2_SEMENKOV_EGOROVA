@@ -1,10 +1,11 @@
 ﻿#include "input.h"
 #include "comb_sort.h"
+#include "database.h"
 
-
-void generateRandomArrays(std::vector<std::vector<int>> &arrays, const size_t &number_of_arrays) {
+void generateRandomArrays(std::vector<std::vector<int>> &arrays, std::vector<std::string>& change_dates, const size_t &number_of_arrays) {
     size_t amount_of_elements{};
     std::vector<std::vector<int>> new_arrays{};
+    std::string change_date{};
 
     // Изменяем размер вектора для массивов согласно указанному количеству
     new_arrays.resize(number_of_arrays);
@@ -22,6 +23,12 @@ void generateRandomArrays(std::vector<std::vector<int>> &arrays, const size_t &n
         }
         // Добавляем новый массив к старым
         arrays.push_back(new_arrays[i]);
+
+        // Получение строки с датой изменения
+        change_date = getCurrentDateAndTime();
+
+        // Добавление даты в вектор дат
+        change_dates.push_back(change_date);
     }
 }
 

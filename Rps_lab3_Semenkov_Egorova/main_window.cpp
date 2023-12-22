@@ -43,6 +43,9 @@ MainWindow::~MainWindow() {
 
 
 void MainWindow::save_btn_clicked() {
+	// Выключаем кнопку
+	_ui->save_btn->setEnabled(false);
+
 	// Проверка чекбокса сохранять ли данные в базе
 	if (!_ui->save_in_db->isChecked()) {
 		clearTable();
@@ -51,18 +54,30 @@ void MainWindow::save_btn_clicked() {
 	else {
 		initializeDB(_arrays); // Добавление новых данных без очистки базы
 	}
+
+	QMessageBox::information(this, "Information", "Array data saved");
+	// Включаем кнопку
+	_ui->save_btn->setEnabled(true);
 }
 
 void MainWindow::load_btn_clicked() {
+	// Выключаем кнопку
+	_ui->load_btn->setEnabled(false);
+
 	// Проверка чекбокса сохранения данных в таблице
 	if (!_ui->save_in_table->isChecked()) {
 		clearTableWidget(); // Очистка данных в таблице перед новой загрузкой данных
 		_arrays.clear(); // Очистка массива, т.к. новые данные добавляются через push_back
+		_change_dates.clear();
 	}
 
 	clearTableWidget();
 	// Загрузка данных из базы
 	loadDataFromDB(_arrays, _change_dates);
+	
+	if (_arrays.empty()) {
+		_change_dates.clear();
+	}
 
 	int row{};
 	// Перебор массивов и их добавление в таблицу
@@ -80,10 +95,22 @@ void MainWindow::load_btn_clicked() {
 
 		// Заполнение ячеек таблицы данными
 		_ui->output_table->setItem(row, Array_data, new QTableWidgetItem(array));
-		_ui->output_table->setItem(row, Change_date, new QTableWidgetItem(QString::fromStdString(_change_dates[i])));
+
+		if (!_change_dates.empty()) {
+			_ui->output_table->setItem(row, Change_date, new QTableWidgetItem(QString::fromStdString(_change_dates[i])));
+		}
+		else {
+			_ui->output_table->setItem(row, Change_date, new QTableWidgetItem(QString::fromStdString(getCurrentDateAndTime())));
+		}
+
 		_ui->output_table->setItem(row, Type, new QTableWidgetItem(QString::fromStdString(getArrayType(_arrays[i]))));
 		row++;
 	}
+
+	QMessageBox::information(this, "Information", "Array data loaded");
+
+	// Включаем кнопку
+	_ui->load_btn->setEnabled(true);
 }
 
 void MainWindow::random_btn_clicked() {
@@ -94,6 +121,7 @@ void MainWindow::random_btn_clicked() {
 	if (!_ui->save_in_table->isChecked()) {
 		clearTableWidget(); // Очистка данных в таблице перед новой загрузкой данных
 		_arrays.clear(); // Очистка массива, т.к. новые данные добавляются через push_back
+		_change_dates.clear();
 	}
 
 	clearTableWidget();
@@ -104,7 +132,7 @@ void MainWindow::random_btn_clicked() {
 	}
 
 	if (all_good) {
-		generateRandomArrays(_arrays, number_of_arrays.toInt());
+		generateRandomArrays(_arrays, _change_dates, number_of_arrays.toInt());
 
 		int row{};
 		// Перебор сгенерированных массивов и их добавление в таблицу
@@ -122,7 +150,14 @@ void MainWindow::random_btn_clicked() {
 
 			// Заполнение ячеек таблицы данными
 			_ui->output_table->setItem(row, Array_data, new QTableWidgetItem(array));
-			_ui->output_table->setItem(row, Change_date, new QTableWidgetItem(QString::fromStdString(getCurrentDateAndTime())));
+
+			if (!_change_dates.empty()) {
+				_ui->output_table->setItem(row, Change_date, new QTableWidgetItem(QString::fromStdString(_change_dates[i])));
+			}
+			else {
+				_ui->output_table->setItem(row, Change_date, new QTableWidgetItem(QString::fromStdString(getCurrentDateAndTime())));
+			}
+
 			_ui->output_table->setItem(row, Type, new QTableWidgetItem(QString::fromStdString(getArrayType(_arrays[i]))));
 
 			row++;
@@ -131,6 +166,9 @@ void MainWindow::random_btn_clicked() {
 }
 
 void MainWindow::sort_btn_clicked() {
+	// Выключаем кнопку
+	_ui->sort_btn->setEnabled(false);
+
 	// Вызов функции для сортировки массивов
 	startSorting(_arrays);
 	clearTableWidget();
@@ -155,15 +193,29 @@ void MainWindow::sort_btn_clicked() {
 
 		row++;
 	}
+
+	QMessageBox::information(this, "Information", "Arrays have been sorted");
+
+	// Включаем кнопку
+	_ui->sort_btn->setEnabled(true);
 }
 
 void MainWindow::clear_database_btn_clicked() {
+	// Выключаем кнопку
+	_ui->clear_database_btn->setEnabled(false);
+
+	// Очистка базы данных
 	clearTable();
+	QMessageBox::information(this, "Information", "Database has been cleaned");
+
+	// Включаем кнопку
+	_ui->clear_database_btn->setEnabled(true);
 }
 
 void MainWindow::clear_table_btn_clicked() {
 	clearTableWidget();
 	_arrays.clear();
+	_change_dates.clear();
 }
 
 void MainWindow::clearTableWidget() {
